@@ -39,3 +39,5 @@ def update_movie(db:Session,movie_id:int,title:str,genre:str,user_id:int):
         db.refresh(movie)
     return movie
 
+def get_movie_by_genre(db:Session,genre:str):
+    return db.query(Movie).all(Movie.genre==genre)
