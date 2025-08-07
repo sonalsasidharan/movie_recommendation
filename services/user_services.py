@@ -1,10 +1,16 @@
 from sqlalchemy.orm import Session
 from models.movie_model import User
 from passlib.hash import bcrypt
+from schemas.user_schema import UserCreate
 
-def register_user(db: Session, username: str, email: str, password: str):
-    hashed_password = bcrypt.hash(password)
-    user = User(username=username, email=email, password_hash=hashed_password)
+def register_user(db: Session, user_data: UserCreate):
+    hashed_password = bcrypt.hash(user_data.password)
+    user = User(
+        username=user_data.username,
+        email=user_data.email,
+        password_hash=hashed_password,
+        liked_genre=""
+    )
     db.add(user)
     db.commit()
     db.refresh(user)
