@@ -27,7 +27,7 @@ def delete_movie(db:Session,movie_id:int,user_id:int):
         db.commit()
     return movie
 
-def update_movie(db:Session,id:int,title:str,genre:str,user_id:int):
+def update_movie(db:Session,movie_id:int,title:str,genre:str,user_id:int):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         raise ValueError("User not found")
@@ -39,3 +39,5 @@ def update_movie(db:Session,id:int,title:str,genre:str,user_id:int):
         db.refresh(movie)
     return movie
 
+def get_movie_by_genre(db:Session,genre:str):
+    return db.query(Movie).all(Movie.genre==genre)
