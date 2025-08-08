@@ -27,15 +27,15 @@ if st.button("Register"):
     try:
         res = requests.post(f"{API_URL}/users/register", json=payload)
         if res.status_code == 200:
-            st.success("✅ Registered successfully! Please login.")
+            st.success("Registered successfully! Please login.")
         else:
             try:
                 error_detail = res.json().get("detail", "Unknown error")
             except Exception as e:
                 error_detail = f"Raw response: {res.text}\nError parsing JSON: {str(e)}"
-            st.error(f"❌ {error_detail}")
+            st.error(f"{error_detail}")
     except Exception as e:
-        st.error(f"🚨 Request failed: {str(e)}")
+        st.error(f"Request failed: {str(e)}")
 
 elif menu == "Login":
     st.subheader("Login")
@@ -52,7 +52,7 @@ elif menu == "Login":
             st.session_state.username = username
             st.success(f"🎉 Logged in as {username}")
         else:
-            st.error(f"❌ {res.json()['detail']}")
+            st.error(f"{res.json()['detail']}")
 
 elif menu == "Logout":
     st.session_state.username = None
