@@ -14,4 +14,4 @@ class User(Base):
     username= Column(String(50), nullable=False, unique=True)
     email= Column(String(50), nullable=False, unique= True)
     password_hash= Column(String(255), nullable=False)
-    liked_genre= Column(String(100), nullable=False)
+    liked_genre= Column(String, nullable=False)
