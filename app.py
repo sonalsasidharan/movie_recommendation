@@ -2,9 +2,7 @@ import streamlit as st
 import requests
 
 API_URL = "http://127.0.0.1:8010" 
-
 st.title("Movie Recommendation App")
-
 if "username" not in st.session_state:
     st.session_state.username = None
 
