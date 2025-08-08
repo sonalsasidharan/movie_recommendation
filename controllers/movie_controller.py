@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.responses import HTMLResponse
 from sqlalchemy.orm import Session
 from database import get_db
 from schemas.movie_schema import MovieCreate, MovieOut
@@ -12,6 +13,10 @@ from services.movie_services import (
 )
 
 movie_router = APIRouter()
+
+@movie_router.get("/",response_class=HTMLResponse)
+def home():
+    return "welcome"
 
 @movie_router.get("/movies", response_model=list[MovieOut])
 def fetch_all_movies(db: Session = Depends(get_db)):
