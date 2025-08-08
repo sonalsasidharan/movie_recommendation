@@ -9,7 +9,7 @@ class UserOut(BaseModel):
     id: int
     username: str
     email: EmailStr
-    liked_genre: str | None = None
+    liked_genre: str 
 
     class Config:
         orm_mode = True
